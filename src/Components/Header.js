@@ -7,7 +7,7 @@ export default function Header(props) {
       <div className="container-fluid">
 
         {/* Title */}
-        <a className="navbar-brand" href="#">
+        <span className="navbar-brand">
           {props.title}
         </a>
 
