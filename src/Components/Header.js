@@ -9,7 +9,7 @@ export default function Header(props) {
         {/* Title */}
         <span className="navbar-brand">
           {props.title}
-        </a>
+        </span>
 
         {/* Toggle button (mobile) */}
         <button
