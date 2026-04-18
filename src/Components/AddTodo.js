@@ -1,60 +1,49 @@
-import React, {useState, useEffect} from "react";
+import React, { useState } from 'react';
 
-export const AddTodo = ({addTodo}) => {
-    const [sno, setSno] = useState("");
-    const [title, setTitle] = useState("");
-    const [desc, setDesc] = useState("");
+export const AddTodo = (props) => {
 
-    const submit = (e) => {
-        e.preventDefault();
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
 
-        if(!title || !desc) {
-            alert("Title or Description cannot be empty");
-            return;
-        }
+  const submit = (e) => {
+    e.preventDefault();
 
-        addTodo(title, desc);
-        setTitle("");
-        setDesc("");
+    if (!title || !desc) {
+      alert("Title or Description cannot be empty");
+      return;
+    }
 
-        const myTodo = {
-            sno: sno,
-            title: title,
-            desc: desc,
-            completed: false
-        };
-    };
-    return (
-        <div className="card shadow-sm border-0 p-4 my-4">
-        <h4 className="mb-3">Add Todo</h4>
-        
+    props.addTodo(title, desc);
 
-        <form onSubmit={submit}>
-            <div className="mb-3">
-            <label className="form-label">Todo Title</label>
-            <input 
-                type="text" 
-                className="form-control"
-                value={title}
-                onChange={(e)=>setTitle(e.target.value)}
-            />
-            </div>
+    setTitle("");
+    setDesc("");
+  };
 
-            <div className="mb-3">
-            <label className="form-label">Description</label>
-            <input 
-                type="text" 
-                className="form-control"
-                value={desc}
-                onChange={(e)=>setDesc(e.target.value)}
-            />
-            </div>
+  return (
+    <div className="container my-3">
+      <h3>Add a Todo</h3>
 
+      <form onSubmit={submit}>
+        <input 
+          type="text"
+          value={title}
+          onChange={(e)=>setTitle(e.target.value)}
+          placeholder="Title"
+          className="form-control my-2"
+        />
 
-            <button type="submit" className="btn btn-success">
-            Add Todo
-            </button>
-        </form>
-        </div>
-    );
+        <input 
+          type="text"
+          value={desc}
+          onChange={(e)=>setDesc(e.target.value)}
+          placeholder="Description"
+          className="form-control my-2"
+        />
+
+        <button type="submit" className="btn btn-success">
+          Add Todo
+        </button>
+      </form>
+    </div>
+  );
 };
